@@ -1,0 +1,994 @@
+/* CSS Custom Properties */
+:root {
+  /* Colors in HSL format */
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --pink-100: hsl(326, 78%, 95%);
+  --pink-200: hsl(326, 78%, 90%);
+  --pink-300: hsl(326, 78%, 85%);
+  --pink-400: hsl(326, 78%, 75%);
+  --pink-500: hsl(326, 78%, 60%);
+  --pink-600: hsl(326, 78%, 50%);
+  --purple-50: hsl(270, 50%, 98%);
+  --purple-100: hsl(270, 50%, 95%);
+  --purple-200: hsl(270, 50%, 90%);
+  --purple-500: hsl(270, 50%, 60%);
+  --purple-600: hsl(270, 50%, 50%);
+  --purple-700: hsl(270, 50%, 40%);
+  --blue-50: hsl(214, 100%, 98%);
+  --blue-100: hsl(214, 100%, 95%);
+  --blue-200: hsl(214, 100%, 90%);
+  --blue-500: hsl(214, 100%, 60%);
+  --blue-600: hsl(214, 100%, 50%);
+  --green-500: hsl(142, 76%, 36%);
+  --yellow-50: hsl(55, 100%, 98%);
+  --yellow-200: hsl(55, 100%, 85%);
+  --red-300: hsl(0, 100%, 85%);
+  --red-400: hsl(0, 100%, 75%);
+  --red-500: hsl(0, 100%, 60%);
+  --red-600: hsl(0, 100%, 50%);
+  --red-700: hsl(0, 100%, 40%);
+  --white: hsl(0, 0%, 100%);
+  --gray-500: hsl(0, 0%, 60%);
+  --gray-600: hsl(0, 0%, 50%);
+  --gray-700: hsl(0, 0%, 40%);
+  
+  /* Fonts */
+  --font-geist: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
+  --font-pacifico: 'Pacifico', cursive;
+  
+  /* Spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-geist);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--foreground);
+  background-color: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keyframes */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  33% { transform: translateY(-30px); }
+  66% { transform: translateY(-15px); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes starshine {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.1) rotate(90deg); }
+  50% { transform: scale(1.2) rotate(180deg); }
+  75% { transform: scale(1.1) rotate(270deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { transform: translateY(0px); opacity: 1; }
+  25% { transform: translateY(-15px); opacity: 0.8; }
+  50% { transform: translateY(-25px); opacity: 0.6; }
+  75% { transform: translateY(-15px); opacity: 0.8; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% { transform: translateY(0px); }
+  40%, 43% { transform: translateY(-30px); }
+  70% { transform: translateY(-15px); }
+  90% { transform: translateY(-4px); }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Main Layout */
+.app {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, var(--pink-100), var(--purple-50), var(--blue-100));
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Hearts */
+.background-hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 2rem;
+  color: hsla(326, 78%, 75%, 0.3);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Header */
+.header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding-top: var(--spacing-12);
+  padding-bottom: var(--spacing-8);
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--pink-500), var(--purple-500), var(--blue-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: var(--spacing-4);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--purple-700);
+  font-weight: 500;
+}
+
+/* Main Content */
+.main-content {
+  position: relative;
+  z-index: 10;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+}
+
+/* Screen Management */
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+/* Game Container */
+.game-container {
+  background: hsla(0, 0%, 100%, 0.8);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-3xl);
+  padding: var(--spacing-8);
+  box-shadow: var(--shadow-2xl);
+  border: 1px solid var(--pink-200);
+  margin-bottom: var(--spacing-8);
+}
+
+.section-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--purple-700);
+  margin-bottom: var(--spacing-6);
+  text-align: center;
+}
+
+.section-description {
+  color: var(--purple-600);
+  margin-bottom: var(--spacing-6);
+  text-align: center;
+}
+
+/* Back Button */
+.back-button-container {
+  text-align: center;
+  margin-bottom: var(--spacing-6);
+}
+
+.back-button {
+  background: linear-gradient(to right, var(--gray-500), var(--gray-600));
+  color: var(--white);
+  padding: var(--spacing-2) var(--spacing-6);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.back-button:hover {
+  background: linear-gradient(to right, var(--gray-600), var(--gray-700));
+  transform: scale(1.05);
+}
+
+/* Games Grid */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-6);
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Game Cards */
+.game-card {
+  padding: var(--spacing-6);
+  border-radius: var(--radius-2xl);
+  border: 2px solid;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.memory-card {
+  background: linear-gradient(to bottom right, var(--pink-50), var(--purple-50));
+  border-color: var(--pink-200);
+}
+
+.memory-card:hover {
+  border-color: var(--pink-300);
+}
+
+.puzzle-card {
+  background: linear-gradient(to bottom right, var(--purple-50), var(--blue-50));
+  border-color: var(--purple-200);
+}
+
+.puzzle-card:hover {
+  border-color: var(--purple-300);
+}
+
+.word-card {
+  background: linear-gradient(to bottom right, var(--blue-50), var(--pink-50));
+  border-color: var(--blue-200);
+}
+
+.word-card:hover {
+  border-color: var(--blue-300);
+}
+
+.game-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-4);
+}
+
+.game-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--purple-700);
+  margin-bottom: var(--spacing-2);
+}
+
+.game-description {
+  color: var(--purple-600);
+  margin-bottom: var(--spacing-4);
+  font-size: 0.875rem;
+}
+
+/* Buttons */
+.game-button, .start-button, .action-button, .check-button {
+  width: 100%;
+  color: var(--white);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-size: 1rem;
+}
+
+.game-button:hover, .start-button:hover, .action-button:hover, .check-button:hover {
+  transform: scale(1.05);
+}
+
+.game-button:active, .start-button:active, .action-button:active, .check-button:active {
+  transform: scale(0.95);
+}
+
+.memory-button {
+  background: linear-gradient(to right, var(--pink-500), var(--purple-500));
+}
+
+.memory-button:hover {
+  background: linear-gradient(to right, var(--pink-600), var(--purple-600));
+}
+
+.puzzle-button {
+  background: linear-gradient(to right, var(--purple-500), var(--blue-500));
+}
+
+.puzzle-button:hover {
+  background: linear-gradient(to right, var(--purple-600), var(--blue-600));
+}
+
+.word-button {
+  background: linear-gradient(to right, var(--blue-500), var(--pink-500));
+}
+
+.word-button:hover {
+  background: linear-gradient(to right, var(--blue-600), var(--pink-600));
+}
+
+.start-button {
+  background: linear-gradient(to right, var(--pink-500), var(--purple-500));
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: 1.25rem;
+}
+
+.start-button:hover {
+  background: linear-gradient(to right, var(--pink-600), var(--purple-600));
+}
+
+/* Game Start/Play States */
+.game-start {
+  text-align: center;
+}
+
+.game-play {
+  /* Already displayed by default */
+}
+
+/* Game Stats */
+.game-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-6);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--purple-700);
+}
+
+.stat-label {
+  color: var(--purple-600);
+}
+
+/* Game Status */
+.game-status {
+  font-size: 1.125rem;
+  color: var(--purple-600);
+  margin-bottom: var(--spacing-4);
+  text-align: center;
+}
+
+.game-status.success {
+  color: hsl(142, 76%, 36%);
+  animation: bounce 1s ease-in-out infinite;
+}
+
+/* Memory Game */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+  max-width: 20rem;
+  margin: 0 auto var(--spacing-6) auto;
+}
+
+.memory-button {
+  width: 6rem;
+  height: 6rem;
+  border-radius: var(--radius-xl);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1.125rem;
+  box-shadow: var(--shadow-lg);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.memory-button.pink-button {
+  background-color: var(--pink-500);
+}
+
+.memory-button.purple-button {
+  background-color: var(--purple-500);
+}
+
+.memory-button.blue-button {
+  background-color: var(--blue-500);
+}
+
+.memory-button.green-button {
+  background-color: var(--green-500);
+}
+
+.memory-button.active {
+  filter: brightness(1.5);
+  transform: scale(1.1);
+}
+
+.memory-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Puzzle Game */
+.puzzle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-2);
+  max-width: 20rem;
+  margin: 0 auto var(--spacing-6) auto;
+}
+
+.puzzle-tile {
+  width: 6rem;
+  height: 6rem;
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: 2px solid var(--pink-200);
+  cursor: pointer;
+  background: linear-gradient(to bottom right, var(--pink-400), var(--purple-500));
+  box-shadow: var(--shadow-lg);
+}
+
+.puzzle-tile:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom right, var(--pink-500), var(--purple-600));
+}
+
+.puzzle-tile.empty {
+  background: transparent;
+  border: 2px solid var(--pink-200);
+  cursor: default;
+  box-shadow: none;
+}
+
+.puzzle-tile.empty:hover {
+  transform: none;
+  background: transparent;
+}
+
+.puzzle-tile-number {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-1);
+}
+
+.puzzle-tile-message {
+  font-size: 0.75rem;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0 var(--spacing-1);
+}
+
+/* Word Game */
+.word-game-content {
+  max-width: 28rem;
+  margin: 0 auto var(--spacing-6) auto;
+}
+
+.word-display {
+  text-align: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.scrambled-word {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--purple-700);
+  margin-bottom: var(--spacing-2);
+  letter-spacing: 0.1em;
+}
+
+.word-hint {
+  color: var(--purple-600);
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+.word-input-section {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: center;
+}
+
+.word-input {
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--pink-200);
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--purple-700);
+  background: hsla(0, 0%, 100%, 0.9);
+  flex: 1;
+  max-width: 16rem;
+}
+
+.word-input:focus {
+  outline: none;
+  border-color: var(--pink-400);
+}
+
+.word-input:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.check-button {
+  background: linear-gradient(to right, var(--pink-500), var(--purple-500));
+  padding: var(--spacing-3) var(--spacing-6);
+  white-space: nowrap;
+  width: auto;
+}
+
+.check-button:hover {
+  background: linear-gradient(to right, var(--pink-600), var(--purple-600));
+}
+
+.check-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Game Actions */
+.game-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.reset-button {
+  background: linear-gradient(to right, var(--purple-500), var(--pink-500));
+  width: auto;
+}
+
+.reset-button:hover {
+  background: linear-gradient(to right, var(--purple-600), var(--pink-600));
+}
+
+.new-word-button {
+  background: linear-gradient(to right, var(--purple-500), var(--pink-500));
+  width: auto;
+}
+
+.new-word-button:hover {
+  background: linear-gradient(to right, var(--purple-600), var(--pink-600));
+}
+
+/* Progress Section */
+.progress-section {
+  margin-top: var(--spacing-6);
+}
+
+.progress-text {
+  color: var(--purple-600);
+  margin-bottom: var(--spacing-2);
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: var(--purple-200);
+  border-radius: var(--radius-full);
+  height: 0.75rem;
+}
+
+.progress-fill {
+  background: linear-gradient(to right, var(--pink-500), var(--purple-500));
+  height: 0.75rem;
+  border-radius: var(--radius-full);
+  transition: all 0.5s ease;
+}
+
+/* Game Tip */
+.game-tip {
+  margin-top: var(--spacing-4);
+  font-size: 0.875rem;
+  color: var(--purple-600);
+  text-align: center;
+}
+
+/* Achievements */
+.achievements {
+  margin-top: var(--spacing-8);
+  padding: var(--spacing-4);
+  background: linear-gradient(to right, var(--yellow-50), var(--pink-50));
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--yellow-200);
+}
+
+.achievements.hidden {
+  display: none;
+}
+
+.achievements-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--purple-700);
+  margin-bottom: var(--spacing-2);
+  text-align: center;
+}
+
+.achievement-list {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-4);
+}
+
+.achievement {
+  text-align: center;
+}
+
+.achievement-icon {
+  font-size: 1.5rem;
+}
+
+.achievement-label {
+  font-size: 0.875rem;
+  color: var(--purple-600);
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+/* Heart Reward Overlay */
+.reward-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+.reward-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reward-content {
+  position: relative;
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: absolute;
+  inset: 0;
+}
+
+.floating-sparkle {
+  position: absolute;
+  font-size: 1.2rem;
+  color: hsla(326, 78%, 75%, 0.8);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.floating-heart-element {
+  position: absolute;
+  font-size: 1.5rem;
+  color: hsla(0, 100%, 75%, 0.8);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Heart Container */
+.heart-container {
+  position: relative;
+}
+
+.heart-glow {
+  position: absolute;
+  inset: 0;
+  width: 10rem;
+  height: 10rem;
+  background: hsla(0, 100%, 60%, 0.3);
+  border-radius: 50%;
+  filter: blur(3rem);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.heart-3d {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  animation: heartbeat 1.5s ease-in-out infinite, float 4s ease-in-out infinite, spin 8s linear infinite;
+}
+
+.heart-layer {
+  position: absolute;
+  inset: 0;
+  font-size: 5.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart-layer-1 {
+  color: var(--red-700);
+  transform: rotate(12deg) scale(1.1);
+}
+
+.heart-layer-2 {
+  color: var(--red-600);
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.heart-layer-3 {
+  color: var(--red-500);
+}
+
+.heart-layer-4 {
+  color: var(--red-400);
+  transform: rotate(6deg) scale(0.95);
+}
+
+.heart-layer-5 {
+  color: var(--red-300);
+  transform: rotate(-3deg) scale(0.9);
+}
+
+.heart-ring {
+  position: absolute;
+  inset: 0;
+  width: 10rem;
+  height: 10rem;
+  border: 4px solid hsla(0, 100%, 75%, 0.5);
+  border-radius: 50%;
+  animation: ping 2s linear infinite;
+}
+
+/* Reward Text */
+.reward-text {
+  position: absolute;
+  bottom: -8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.reward-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--spacing-4);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.reward-message {
+  color: hsla(0, 0%, 100%, 0.9);
+  font-size: 1.25rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding-top: var(--spacing-16);
+  padding-bottom: var(--spacing-8);
+}
+
+.footer-text {
+  color: var(--purple-600);
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+  
+  .game-stats {
+    gap: var(--spacing-4);
+  }
+  
+  .memory-button {
+    width: 5rem;
+    height: 5rem;
+    font-size: 1rem;
+  }
+  
+  .puzzle-tile {
+    width: 5rem;
+    height: 5rem;
+  }
+  
+  .puzzle-tile-number {
+    font-size: 1.25rem;
+  }
+  
+  .puzzle-tile-message {
+    font-size: 0.625rem;
+  }
+  
+  .scrambled-word {
+    font-size: 1.5rem;
+  }
+  
+  .word-input-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .word-input {
+    max-width: 100%;
+  }
+  
+  .game-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .action-button {
+    width: 100%;
+    max-width: 16rem;
+  }
+  
+  .reward-title {
+    font-size: 2rem;
+  }
+  
+  .reward-message {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0 var(--spacing-2);
+  }
+  
+  .game-container {
+    padding: var(--spacing-4);
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .memory-grid {
+    max-width: 16rem;
+  }
+  
+  .memory-button {
+    width: 4rem;
+    height: 4rem;
+    font-size: 0.875rem;
+  }
+  
+  .puzzle-grid {
+    max-width: 16rem;
+  }
+  
+  .puzzle-tile {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .puzzle-tile-number {
+    font-size: 1rem;
+  }
+  
+  .puzzle-tile-message {
+    font-size: 0.5rem;
+  }
+  
+  .heart-3d {
+    width: 8rem;
+    height: 8rem;
+  }
+  
+  .heart-layer {
+    font-size: 4.5rem;
+  }
+  
+  .heart-glow, .heart-ring {
+    width: 8rem;
+    height: 8rem;
+  }
+  
+  .reward-text {
+    bottom: -6rem;
+  }
+  
+  .reward-title {
+    font-size: 1.5rem;
+  }
+  
+  .reward-message {
+    font-size: 0.875rem;
+  }
+  }
+  
